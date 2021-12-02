@@ -15,9 +15,9 @@ for n = 1:E
     l = sqrt((x(j,1) - x(i,1))^2 + (x(j,2) - x(i,2))^2);
     // Construction matrices de connectivité
     Cni = zeros(3,3*N);
-    Cni(:,3*i-2:3*i) = eye(3);
+    Cni(:,3*i-2:3*i) = eye(3,3);
     Cnj = zeros(3,3*N);
-    Cnj(:,3*j-2:3*j) = eye(3);
+    Cnj(:,3*j-2:3*j) = eye(3,3);
     qn = [(x(j,1) - x(i,1))/l , (x(j,2) - x(i,2))/l, 0;
           -(x(j,2) - x(i,2))/l, (x(j,1) - x(i,1))/l, 0;
           0,                   0,                    1];
