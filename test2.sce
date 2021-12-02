@@ -9,6 +9,7 @@ Moment = 1;
 exec("12_test2_noeuds.sce");           // Chargement noeuds
 exec("22_test2_elements.sce");         // Chargement elements
 exec("30_matrice_de_raideur.sce");     // Calcul matrice de raideur
+exec("42_matrice_des_liaisons.sce");    // Calcul matrice des liaisons
 
 // Matrices de connectivité
 N = size(x,1);
@@ -28,3 +29,9 @@ K53 = C35*K*C33'
 
 // Bloc 5-5
 K55 = C35*K*C35'
+
+K_tilde = L' * K * L;
+
+K_tilde_verif = K_ana(13:15,13:15)
+
+norm(K_tilde - K_tilde_verif)
