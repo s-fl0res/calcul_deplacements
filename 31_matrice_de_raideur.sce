@@ -7,6 +7,7 @@ E = size(ij,1);
 // Initialisation K
 K = zeros(3*N,3*N);
 K_ana = zeros(3*N,3*N);
+K_tilde_verif = zeros(3,3);
 
 
 // Boucle sur les éléments

@@ -12,3 +12,4 @@ exec("31_matrice_de_raideur.sce");     // Calcul matrice de raideur
 
 norm(K-K_ana)
 
+K_tilde_verif = K_ana(4:6,4:6);
