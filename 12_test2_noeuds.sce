@@ -10,7 +10,7 @@ liaison(noeud) = 1;
 
 //noeud 2
 noeud = noeud + 1;
-x(noeud, :) = [2*L,0];
+x(noeud, :) = [2*L,l];
 liaison(noeud) = 1;
 
 //noeud 3
