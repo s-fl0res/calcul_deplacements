@@ -4,8 +4,6 @@ clear ij, clear S, clear Young, clear J
 n = 0
 
 // paramètres 
-l = 1
-L = 1
 E = 1
 S = 1
 J = 1
@@ -39,4 +37,4 @@ S(n) = S
 Young(n) = E
 J(n) = J
 
-clear n
+clear n, clear E, clear S, clear J

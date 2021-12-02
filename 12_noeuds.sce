@@ -1,6 +1,12 @@
 clear x, clear liaison
 
+// Initialisation
 noeud = 0
+
+// Paramètres
+L = 1
+l = 1
+
 //noeud 1
 noeud = noeud + 1 
 x(noeud, :) = [L,0]
@@ -25,3 +31,5 @@ liaison(noeud) = 1
 noeud = noeud + 1
 x(noeud, :) = [L,l]
 liaison(noeud) = 0
+
+clear noeud, clear l, clear L
