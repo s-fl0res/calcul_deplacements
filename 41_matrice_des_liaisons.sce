@@ -1,3 +1,4 @@
+noeud = size(x,1);
 L = zeros(3*noeud,3*(noeud-sum(liaison)));
 k = 1;
 for n2 = 1:noeud
