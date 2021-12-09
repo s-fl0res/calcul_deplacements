@@ -29,11 +29,11 @@ for n=1:E
                 rni = rni + [-ich(n,ichargement)/l*(l-ech(n,ichargement)); 0; 0];
                 rnj = rnj + [-ich(n,ichargement)/l*(ech(n,ichargement)); 0; 0];
             case 6 then
-                rni = rni + [Young(n)*S(n)*ich(n,ichargement);0;0];
-                rnj = rnj + [-Young(n)*S(n)*ich(n,ichargement);0;0];
+                rni = rni + [Young(n)*S(n)*alpha(n)*ich(n,ichargement);0;0];
+                rnj = rnj + [-Young(n)*S(n)*alpha(n)*ich(n,ichargement);0;0];
             case 7 then
-                rni = rni + [0;0;-Young(n)*J(n)*ich(n,ichargement)];
-                rnj = rnj + [0;0;Young(n)*J(n)*ich(n,ichargement)];
+                rni = rni + [0;0;-Young(n)*J(n)*alpha(n)*ich(n,ichargement)];
+                rnj = rnj + [0;0;Young(n)*J(n)*alpha(n)*ich(n,ichargement)];
         end
     end
     // Construction de qn
