@@ -1,0 +1,9 @@
+
+1) Verification de D_sol avec le test 1, a = L/2
+
+2) Fichier 80_resultat --> efforts intérieurs
+
+3) Fichier 85_deplacements --> déplacements éléments
+
+
+
