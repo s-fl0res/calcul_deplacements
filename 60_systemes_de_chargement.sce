@@ -1,12 +1,16 @@
 // Ici on regarde les types de chargements pour définir le vecteur R
 // On utilise la formule R = sum_{n=1:E} Cn * Rn
+clear Rn_st_th
 
 R_st_th = zeros(3*N,1);
 for n=1:E
     // Initialisation des rn
     rni = zeros(3,1);
     rnj = rni;
-    l = ij(n,2) - ij(n,1);
+    // Calcul de l
+    i = ij(n,1);
+    j = ij(n,2);
+    l = sqrt((x(j,1) - x(i,1))^2 + (x(j,2) - x(i,2))^2);
     for i_chargement = 1:3
         select tch(n,i_chargement)
             case "C1" then
@@ -33,8 +37,17 @@ for n=1:E
         end
     end
     // Construction de qn
+    qn = [(x(j,1) - x(i,1))/l , (x(j,2) - x(i,2))/l, 0;
+          -(x(j,2) - x(i,2))/l, (x(j,1) - x(i,1))/l, 0;
+          0,                   0,                    1];
     // Construction de Cni et Cnj
+    Cni = zeros(3,3*N);
+    Cni(:,3*i-2:3*i) = eye(3,3);
+    Cnj = zeros(3,3*N);
+    Cnj(:,3*j-2:3*j) = eye(3,3);
     Rni = qn' * rni;
     Rnj = qn' * rnj;
     R_st_th = R_st_th + Cni'*Rni +Cnj'*Rnj;
 end
+
+clear l,clear i,clear j, clear qn, clear Cni, clear Cnj, clear Rni, clear Rnj, clear rni, clear rnj
