@@ -43,4 +43,4 @@ for n = 1:E
     K_ana(1+3*(j-1):3*(j),1+3*(j-1):3*(j)) = K_ana(1+3*(j-1):3*(j),1+3*(j-1):3*(j)) + Knjj;
 end
 
-clear N, clear E, clear i, clear j, clear Cni, clear Cnj, clear qn, clear knii, clear knij, clear knji, clear knjj
+clear i, clear j, clear Cni, clear Cnj, clear qn, clear knii, clear knij, clear knji, clear knjj
