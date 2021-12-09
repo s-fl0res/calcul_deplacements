@@ -13,25 +13,25 @@ for n=1:E
     l = sqrt((x(j,1) - x(i,1))^2 + (x(j,2) - x(i,2))^2);
     for i_chargement = 1:3
         select tch(n,i_chargement)
-            case 1 then
+            case "C1" then
                 rni = rni + [0; ich(n,ichargement)*l / 2; ich(n,ichargement)*l^2 / 12]; 
                 rnj = rnj + [0; ich(n,ichargement)*l / 2; -ich(n,ichargement)*l^2 / 12];
-            case 2 then
+            case "C2" then
                 rni = rni + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
                 rnj = rnj + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); -ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
-            case 3 then
+            case "C3" then
                 rni = rni + [0; 6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
                 rnj = rnj +[0; -6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
-            case 4 then
+            case "C4" then
                 rni = rni + [-ich(n,ichargement)*l/2; 0; 0];
                 rnj = rnj + [-ich(n,ichargement)*l/2; 0; 0];
-            case 5 then
+            case "C5" then
                 rni = rni + [-ich(n,ichargement)/l*(l-ech(n,ichargement)); 0; 0];
                 rnj = rnj + [-ich(n,ichargement)/l*(ech(n,ichargement)); 0; 0];
-            case 6 then
+            case "T1" then
                 rni = rni + [Young(n)*S(n)*alpha(n)*ich(n,ichargement);0;0];
                 rnj = rnj + [-Young(n)*S(n)*alpha(n)*ich(n,ichargement);0;0];
-            case 7 then
+            case "T2" then
                 rni = rni + [0;0;-Young(n)*J(n)*alpha(n)*ich(n,ichargement)];
                 rnj = rnj + [0;0;Young(n)*J(n)*alpha(n)*ich(n,ichargement)];
         end
