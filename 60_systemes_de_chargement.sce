@@ -11,8 +11,8 @@ for n=1:E
     i = ij(n,1);
     j = ij(n,2);
     l = sqrt((x(j,1) - x(i,1))^2 + (x(j,2) - x(i,2))^2);
-    for i_chargement = 1:3
-        select tch(n,i_chargement)
+    for ichargement = 1:3
+        select tch(n,ichargement)
             case "C1" then
                 rni = rni + [0; ich(n,ichargement)*l / 2; ich(n,ichargement)*l^2 / 12]; 
                 rnj = rnj + [0; ich(n,ichargement)*l / 2; -ich(n,ichargement)*l^2 / 12];
