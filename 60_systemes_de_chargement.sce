@@ -13,25 +13,25 @@ for n=1:E
     l = sqrt((x(j,1) - x(i,1))^2 + (x(j,2) - x(i,2))^2);
     for i_chargement = 1:3
         select tch(n,i_chargement)
-            case "C1" then
+            case 1 then
                 rni = rni + [0; ich(n,ichargement)*l / 2; ich(n,ichargement)*l^2 / 12]; 
                 rnj = rnj + [0; ich(n,ichargement)*l / 2; -ich(n,ichargement)*l^2 / 12];
-            case "C2" then
+            case 2 then
                 rni = rni + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
                 rnj = rnj + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); -ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
-            case "C3" then
+            case 3 then
                 rni = rni + [0; 6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
                 rnj = rnj +[0; -6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
-            case "C4" then
+            case 4 then
                 rni = rni + [-ich(n,ichargement)*l/2; 0; 0];
                 rnj = rnj + [-ich(n,ichargement)*l/2; 0; 0];
-            case "C5" then
+            case 5 then
                 rni = rni + [-ich(n,ichargement)/l*(l-ech(n,ichargement)); 0; 0];
                 rnj = rnj + [-ich(n,ichargement)/l*(ech(n,ichargement)); 0; 0];
-            case "T1" then
+            case 6 then
                 rni = rni + [Young(n)*S(n)*ich(n,ichargement);0;0];
                 rnj = rnj + [-Young(n)*S(n)*ich(n,ichargement);0;0];
-            case "T2" then
+            case 7 then
                 rni = rni + [0;0;-Young(n)*J(n)*ich(n,ichargement)];
                 rnj = rnj + [0;0;Young(n)*J(n)*ich(n,ichargement)];
         end
