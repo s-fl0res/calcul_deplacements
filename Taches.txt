@@ -3,6 +3,31 @@
 
 2) Fichier 80_resultat --> efforts intérieurs
 
+for n=1:E
+	Dni=Cni+D_sol
+	pareil pour j
+	dni = qn*Dni
+	pareil pour j
+	rni = knii*dni+knij*dnj
+	for ichargement=1:3
+		select tch(n,ichargement)
+			case "C1" then
+				rni = rni + fct(ich,ech)
+		...
+		end
+	end
+	s = [ cf Moodle
+
+N(s) = xni + 0
+T(s) = yni + { 0 si s <= a || -Q si s > a}
+M(s) = mni + { 0 si s <= a || (s-a)*Q si s > a}
+
+Element 2
+s| 0       | l/4 | l/2 | 3l/4| l   
+N|1.000e00 |
+T|
+M|
+
 3) Fichier 85_deplacements --> déplacements éléments
 
 
