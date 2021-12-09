@@ -37,10 +37,6 @@ for n = 1:E
     Knjj = qn'*knjj*qn;
     K = K + Cni' * Knii * Cni + Cni' * Knij * Cnj + Cnj' * Knji * Cni + Cnj' * Knjj *Cnj;
 
-    K_ana(1+3*(i-1):3*(i),1+3*(i-1):3*(i)) = K_ana(1+3*(i-1):3*(i),1+3*(i-1):3*(i)) + Knii;
-    K_ana(1+3*(j-1):3*(j),1+3*(i-1):3*(i)) =  K_ana(1+3*(j-1):3*(j),1+3*(i-1):3*(i)) + Knji;
-    K_ana(1+3*(i-1):3*(i),1+3*(j-1):3*(j)) = K_ana(1+3*(i-1):3*(i),1+3*(j-1):3*(j)) + Knij;
-    K_ana(1+3*(j-1):3*(j),1+3*(j-1):3*(j)) = K_ana(1+3*(j-1):3*(j),1+3*(j-1):3*(j)) + Knjj;
 end
 
 clear i, clear j, clear Cni, clear Cnj, clear qn, clear knii, clear knij, clear knji, clear knjj
