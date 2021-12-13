@@ -5,6 +5,8 @@
 
 //Ouverture du fichier resultats.txt
 [fd,err] = mopen("efforts_interieurs.txt","w");
+mfprintf(fd,"Efforts intérieurs de la structure\n");
+mfprintf(fd,"\n")
 for n=1:E
     i = ij(n,1);
     j = ij(n,2);
@@ -84,12 +86,13 @@ for n=1:E
                 mom_flech(i_s) = mom_flech(i_s) - 2*s(i_s)*J(n)*alpha(n); //fct de ich et ech
             end
         end
+    end
     // Ecrire effort normal, effort tranchant, mom_flech, sur l'élément en sorite dans "resultats.txt"
     mfprintf(fd,"element %i \n", n);
-    write(fd,"0\t L/4 \t L/2 \t 3L/4 \t L\n");
-    write(fd,eff_norm);
-    write(fd,eff_tran);
-    write(fd,mom_flech);
-    mclose(fd);
-    end
+    mfprintf(fd,"\t\t 0\t L/4 \t L/2 \t 3L/4 \t L\n");
+    mfprintf(fd,"eff_norm\t %0.2f\t %0.2f\t %0.2f\t %0.2f\t %0.2f\n", eff_norm(1),eff_norm(2),eff_norm(3),eff_norm(4),eff_norm(5));
+    mfprintf(fd,"eff_tran\t %0.2f\t %0.2f\t %0.2f\t %0.2f\t %0.2f\n",eff_tran(1),eff_tran(2),eff_tran(3),eff_tran(4),eff_tran(5));
+    mfprintf(fd,"mom_flech\t %0.2f\t %0.2f\t %0.2f\t %0.2f\t %0.2f\n",mom_flech(1),mom_flech(2),mom_flech(3),mom_flech(4),mom_flech(5));
+    mfprintf(fd,"\n")
 end
+mclose(fd);
