@@ -17,9 +17,9 @@ exec("../70_resolution.sce"); // Résolution de la structure
 
 
 
-KtNum = [12*E*J(1)/l^3 + E*S(1)/Ldimension , 0 , 6*E*J(1)/l^2 ; 0 , E*S(1)/l + 12*E*J(1)/Ldimension^3 , 6*E*J(1)/Ldimension^2 ; 6*E*J(1)/Ldimension^2 , 6*E*J(1)/Ldimension^2 , 4*E*J(1)/l + 4*E*J(1)/Ldimension];
+KtNum = [12*YoungU*J(1)/l^3 + YoungU*S(1)/Ldimension , 0 , 6*YoungU*J(1)/l^2 ; 0 , YoungU*S(1)/l + 12*YoungU*J(1)/Ldimension^3 , 6*YoungU*J(1)/Ldimension^2 ; 6*YoungU*J(1)/Ldimension^2 , 6*YoungU*J(1)/Ldimension^2 , 4*YoungU*J(1)/l + 4*YoungU*J(1)/Ldimension];
 
-RtNum = [0 ; Q*(Ldimension^3-3*Ldimension*a+2*a^3)/Ldimension^3 ; Q*a*(Ldimension-a)*(Ldimension-a)/Ldimension^2];
+RtNum = [0 ; Q*(Ldimension^3-3*Ldimension*a^2+2*a^3)/Ldimension^3 ; Q*a*(Ldimension-a)*(Ldimension-a)/Ldimension^2];
 
 D_soltNum = - inv(KtNum)*RtNum;
 D_solNum = L*D_soltNum;

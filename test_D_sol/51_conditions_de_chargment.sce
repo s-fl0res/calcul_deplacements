@@ -4,7 +4,7 @@ clear tch;clear ich;clear ech;
 // pour tch : C1 --> 1, ... C5 --> 5, T1 --> -1, T2 --> -2
 
 a = l/2;
-Q = 1;
+Q = -1;
 
 //poteau 1, chargmeent longitudinal
 n=1;
@@ -15,7 +15,7 @@ ech(n,:) = [0,0,0]; // Excentricité du chargement (ce n'a de sens que pour les 
 //poteau 2,chargement longitudinal
 n =2;
 tch(n,:)=["C2","C0","C0"];
-ich(n,:) = [-Q,0,0];
+ich(n,:) = [Q,0,0];
 ech(n,:) = [a,0,0];
 
 

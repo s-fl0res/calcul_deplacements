@@ -20,7 +20,8 @@ for n=1:E
                 rnj = rnj + [0; ich(n,ichargement)*l / 2; -ich(n,ichargement)*l^2 / 12];
             case "C2" then
                 rni = rni + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
-                rnj = rnj + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); -ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
+                rnj = rnj + [0 ; ich(n,ichargement)/l^3 * ech(n,ichargement)^2 * (3*l-2*ech(n,ichargement)) ; ich(n,ichargement)/l^2 * ech(n,ichargement)^2 *(l-ech(n,ichargement))]
+                //rnj = rnj + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); -ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
             case "C3" then
                 rni = rni + [0; 6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
                 rnj = rnj +[0; -6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
