@@ -1,0 +1,9 @@
+10 : pas noyau : définition des noeuds
+20 : pas noyau : définition des élements
+30 : noyau     : calcul de la matrice de raideur
+40 : noyau     : calcul de la matrice des liaisons
+50 : pas noyau : définition des conditions de chargement
+60 : noyau     : calcul du vecteur R
+70 : noyau     : calcul de D_sol : résolution de la structure
+
+
