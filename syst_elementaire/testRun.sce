@@ -1,3 +1,5 @@
+clear all
+
 exec("11_noeuds.sce");           // Chargement noeuds, spécifique au test
 exec("21_elements.sce");         // Chargement elements, spécifique au test
 exec("30_matrice_de_raideur.sce");     // Calcul matrice de raideur

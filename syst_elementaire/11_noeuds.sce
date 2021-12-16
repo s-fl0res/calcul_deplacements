@@ -1,7 +1,7 @@
 
 clear x, clear liaison
 
-l=1;
+l=2;
 L=1;
 
 // noeud 1
@@ -21,4 +21,4 @@ x(noeud,:) = [l,0]; // coordonnée du noeud
 liaison(noeud) = 1; // liaison au noeud 1 (0 si )
 
 
-clear noeud;
+clear noeud

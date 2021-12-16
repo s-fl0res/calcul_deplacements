@@ -29,21 +29,20 @@ for n=1:E
     Knij = Cni * K * Cnj';
     knii = qn * Knii * qn';
     knij = qn * Knij * qn';
-    if n == 1
-        Knji = Knij';
-        Knjj = Cnj * K * Cnj';
-        knji = qn * Knji * qn';
-        knjj = qn * Knjj * qn';
-    end
+    Knji = Knij';
+    Knjj = Cnj * K * Cnj';
+    knji = qn * Knji * qn';
+    knjj = qn * Knjj * qn';
     // rni = knii * dni + knij * dnj + rni_charge1 + rni_charge2 + rni_charge3
     rni = knii * dni + knij * dnj;
+    rnj = knji * dni + knjj * dnj;
     // Au noeud : seul les deux premieres composantes contribuent.
     s = [0,l/4,l/2,3*l/4,l];
     for ichargement = 1:3
         select tch(n,ichargement)
             case "C1" then
-                rni = rni + [0; ich(n,ichargement)*l / 2; ich(n,ichargement)*l^2 / 12]; 
-                rnj = rnj + [0; ich(n,ichargement)*l / 2; -ich(n,ichargement)*l^2 / 12];
+                rni = rni + [0; ich(n,ichargement)*l / 2; ich(n,ichargement)*l^2 / 12] 
+                rnj = rnj + [0; ich(n,ichargement)*l / 2; -ich(n,ichargement)*l^2 / 12]
             case "C2" then
                 rni = rni + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
             case "C3" then
