@@ -1,4 +1,4 @@
-
+format("e",25)
 clear x, clear liaison
 
 l=1;
