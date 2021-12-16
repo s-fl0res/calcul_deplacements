@@ -27,17 +27,17 @@ for n=1:E
     // Construction des variables knii et knij
     Knii = Cni * K * Cni';
     Knij = Cni * K * Cnj';
-    knii = qn' * Knii * qn;
-    knij = qn' * Knij * qn;
+    knii = qn * Knii * qn';
+    knij = qn * Knij * qn';
     // rni = knii * dni + knij * dnj + rni_charge1 + rni_charge2 + rni_charge3
-    rni = knii * dni;
+    rni = knii * dni + knij * dnj;
     // Au noeud : seul les deux premieres composantes contribuent.
     s = [0,l/4,l/2,3*l/4,l];
     // Contribution des déplacements
     for i_s = 1:5
         eff_norm(i_s) = rni(1);
         eff_tran(i_s) = rni(2);
-        mom_flech(i_s) = rni(3) - rni(2)*s(i_s);
+        mom_flech(i_s) = rni(3) + rni(2) * s(i_s);
     end
     for ichargement=1:3
         P = ich(n,ichargement);
@@ -47,7 +47,7 @@ for n=1:E
             for i_s = 1:5
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) - P * s(i_s);//fct de ich et ech
-                mom_flech(i_s) = mom_flech(i_s) + P * s(i_s)^2/2 - eff_tran(1) * s(i_s); //fct de ich et ech
+                mom_flech(i_s) = mom_flech(i_s) + P * s(i_s)^2/2 ; //fct de ich et ech
             end
         case "C2" then
             for i_s = 1:5
