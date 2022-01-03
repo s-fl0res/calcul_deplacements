@@ -14,15 +14,16 @@ format("e",10)
 exec("syst_elementaire/10_noeuds.sce");           // Chargement noeuds
 exec("syst_elementaire/20_elements.sce");         // Chargement elements
 exec("30_matrice_de_raideur.sce");     // Calcul matrice de raideur
-K_ana =     [1,0,0,-1,0,0,0,0,0;
-             0,12,6,0,-12,6,0,0,0;
-             0,6,4,0,-6,2,0,0,0;
-             -1,0,0,2,0,0,-1,0,0;
-             0,-12,-6,0,24,0,0,-12,6;
-             0,6,2,0,0,8,0,-6,2;
-             0,0,0,-1,0,0,1,0,0;
-             0,0,0,0,-12,-6,0,12,-6;
-             0,0,0,0,6,2,0,-6,4];
+K_ana =     [2,0,0,-2,0,0,0,0,0;
+             0,96,24,0,-96,24,0,0,0;
+             0,24,8,0,-24,4,0,0,0;
+             -2,0,0,4,0,0,-2,0,0;
+             0,-96,-24,0,192,0,0,-96,24;
+             0,24,4,0,0,16,0,-24,4;
+             0,0,0,-2,0,0,2,0,0;
+             0,0,0,0,-96,-24,0,96,-24;
+             0,0,0,0,24,4,0,-24,8];
+disp(isequal(K,K_ana))
 exec("40_matrice_des_liaisons.sce");    // Calcul de la matrice de liaison
 L_ana = [0,0,0;
         0,0,0;
@@ -33,30 +34,34 @@ L_ana = [0,0,0;
         0,0,0;
         0,0,0;
         0,0,0];
-Ktilde_ana =    [2,0,0;
-                 0,24,0;
-                 0,0,8];
+Ktilde_ana =    [4,0,0;
+                 0,192,0;
+                 0,0,16];
 Ktilde = L'*K*L;
+disp(isequal(Ktilde,Ktilde_ana))
+disp(isequal(L,L_ana))
 exec("syst_elementaire/50_conditions_de_chargement.sce"); // Définition des conditions de chargement
 exec("60_systemes_de_chargement.sce"); // Définition du vecteur R_st_th
 R_ana =[0;
-        1/2;
-        1/12;
-        0;
-        1;
-        0;
+        1/4;
+        1/48;
         0;
         1/2;
-        -1/12]; 
+        0;
+        0;
+        1/4;
+        -1/48];
+disp(isequal(R_st_th,R_ana))
 exec("70_resolution.sce"); // Résolution de la structure
 D_ana = [0;
          0;
          0;
          0;
-         -1/24;
+         -1/192 * 1/2;
          0;
          0;
          0;
          0];
+disp(isequal(D_sol,D_ana))
 exec("80_efforts_interieurs.sce");//Calcul des efforts intérieurs à partir des déplacements solution
 //exec("85_deplacements.sce");
