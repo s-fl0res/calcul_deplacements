@@ -5,5 +5,7 @@
 50 : pas noyau : définition des conditions de chargement
 60 : noyau     : calcul du vecteur R
 70 : noyau     : calcul de D_sol : résolution de la structure
+80 : noyau     : calcul des efforts interieurs
+85 : noyau     : calcul des déplacements
 
 

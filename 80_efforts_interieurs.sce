@@ -62,7 +62,7 @@ for n=1:E
     for i_s = 1:5
         eff_norm(i_s) = rni(1);
         eff_tran(i_s) = rni(2);
-        mom_flech(i_s) = rni(3) + rni(2) * s(i_s);
+        mom_flech(i_s) = rni(3) - rni(2) * s(i_s);
     end
     for ichargement=1:3
         P = ich(n,ichargement);
@@ -71,7 +71,7 @@ for n=1:E
         case "C1" then
             for i_s = 1:5
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
-                eff_tran(i_s) = eff_tran(i_s) - P * s(i_s);//fct de ich et ech
+                eff_tran(i_s) = eff_tran(i_s) - P * s(i_s)/2;//fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) - P * s(i_s)^2/2 ; //fct de ich et ech
             end
         case "C2" then
