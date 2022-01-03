@@ -1,14 +1,9 @@
-Efforts intérieurs de la structure
 
-element 1 
-		 0	 L/4 	 L/2 	 3L/4 	 L
-eff_norm	 0.000	 0.000	 0.000	 0.000	 0.000
-eff_tran	 0.250	 0.125	 0.000	 -0.125	 -0.250
-mom_flech	 0.063	 0.102	 0.156	 0.227	 0.313
 
-element 2 
-		 0	 L/4 	 L/2 	 3L/4 	 L
-eff_norm	 0.000	 0.000	 0.000	 0.000	 0.000
-eff_tran	 -0.500	 -0.625	 -0.750	 -0.875	 -1.000
-mom_flech	 0.000	 -0.055	 -0.094	 -0.117	 -0.125
+
+
+         column 1 to 4
+   0.000D+00   2.500D-01   5.000D-01   7.500D-01
+         column 5
+   1.000D+00
 
