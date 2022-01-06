@@ -2,8 +2,6 @@
 // On utilise la formule R = sum_{n=1:E} Cn * Rn
 clear Rn_st_th
 
-savel = l;
-
 R_st_th = zeros(3*N,1);
 for n=1:E
     // Initialisation des rn
@@ -53,6 +51,5 @@ for n=1:E
     R_st_th = R_st_th + Cni'*Rni +Cnj'*Rnj;
 end
 
-clear l,clear i,clear j, clear qn, clear Cni, clear Cnj, clear Rni, clear Rnj, clear rni, clear rnj
+clear l,clear i,clear j, clear qn, clear Cni, clear Cnj, clear Rni, clear Rnj, clear rni, clear rnj,clear n, clear ichargement
 
-l = savel;

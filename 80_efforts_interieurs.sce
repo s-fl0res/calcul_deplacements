@@ -119,3 +119,5 @@ for n=1:E
     mfprintf(fd2,"\n")
 end
 mclose(fd2);
+
+clear n,clear i,clear j,clear l,clear Cni, clear Cnj,clear qn,clear Dni, clear Dnj, clear dni, clear dnj, clear knii, clear knij, clear  rni,clear ichargement,clear s,clear i_s,clear fd2

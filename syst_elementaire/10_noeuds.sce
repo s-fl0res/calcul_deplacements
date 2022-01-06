@@ -20,7 +20,8 @@ noeud = 3;         // indice du noeud
 x(noeud,:) = [l,0]; // coordonnée du noeud
 liaison(noeud) = 1; // liaison au noeud 1 (0 si )
 
+longueurInitiale = l;
 
-clear noeud
+clear noeud, clear l, clear L
  
  

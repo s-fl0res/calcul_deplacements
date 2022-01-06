@@ -1,4 +1,4 @@
-clear K, clear K_ana
+clear K, clear K_ana, clear N,clear E
 
 // Calcul de N et E
 N = size(x,1);
@@ -39,4 +39,4 @@ for n = 1:E
 
 end
 
-clear i, clear j, clear Cni, clear Cnj, clear qn, clear knii, clear knij, clear knji, clear knjj
+clear n, clear l,clear i, clear j, clear Cni, clear Cnj, clear qn, clear knii, clear knij, clear knji, clear knjj
