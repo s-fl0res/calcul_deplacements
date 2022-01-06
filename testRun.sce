@@ -11,6 +11,7 @@
 // peut rester tranquillement inchangé dans le dossier principal.
 
 format("e",10)
+clear all
 exec("syst_elementaire/10_noeuds.sce");           // Chargement noeuds
 exec("syst_elementaire/20_elements.sce");         // Chargement elements
 exec("30_matrice_de_raideur.sce");     // Calcul matrice de raideur
@@ -65,3 +66,4 @@ D_ana = [0;
 disp(isequal(D_sol,D_ana))
 exec("80_efforts_interieurs.sce");//Calcul des efforts intérieurs à partir des déplacements solution
 exec("85_deplacements.sce");
+exec("90_diagrammes.sce");

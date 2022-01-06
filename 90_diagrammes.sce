@@ -1,13 +1,25 @@
-// Script de calcul des efforts intérieurs à partir des déplacements solution
-// On se place dans 5 sections dans la poutre
-// On calcule la contribution des déplacements puis du chargement
+// clear sur les diagrammes
+clear eff_norm, clear eff_tran, clear mom_flech, clear graph
+ma = 0;
+somme = 0;
+for inc = 1:E
+    i = ij(inc,1);
+    j = ij(inc,2);
+    l = sqrt((x(j,1)-x(i,1))^2 + (x(j,2)-x(i,2))^2);
+    somme = somme + l;
+    
+    coor_x = [x(i,1), x(j,1)]
+    coor_y = [x(i,2), x(j,2)]
+    
+    ma=max(x(i,1), x(j,1),x(i,2), x(j,2),ma)
+    
+    plot(coor_x, coor_y);
+    xstring((x(i,1)+ x(j,1))/2,(x(i,2)+ x(j,2))/2,string(inc),0,1)
+end
 
-//Ouverture du fichier resultats.txt
-format("e",10)
-[fd2,err] = mopen("efforts_interieurs.txt","w");
-mfprintf(fd2,"Efforts intérieurs de la structure\n");
-mfprintf(fd2,"\n")
+
 for n=1:E
+    
     i = ij(n,1);
     j = ij(n,2);
     // Calcul de l    
@@ -54,9 +66,9 @@ for n=1:E
         end
     end
     // Au noeud : seul les deux premieres composantes contribuent.
-    s = [0,l/4,l/2,3*l/4,l];
+    s = linspace(0,l,100);
     // Contribution des déplacements
-    for i_s = 1:5
+    for i_s = 1:100
         eff_norm(i_s) = rni(1);
         eff_tran(i_s) = rni(2);
         mom_flech(i_s) = rni(3) - rni(2) * s(i_s);
@@ -66,57 +78,53 @@ for n=1:E
         a = ech(n,ichargement);
         select tch(n,ichargement)
         case "C1" then
-            for i_s = 1:5
+            for i_s = 1:100
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) - P * s(i_s);//fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) + P * s(i_s)^2/2 ; //fct de ich et ech
             end
         case "C2" then
-            for i_s = 1:5
+            for i_s = 1:100
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) - P *(s(i_s)>=a);//fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) + P * (s(i_s) - a) * (s(i_s) >=a);//fct de ich et ech
             end
         case "C3" then
-            for i_s = 1:5
+            for i_s = 1:100
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0; //fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) + (s(i_s) >= a) * P;//fct de ich et ech
             end
         case "C4" then
-            for i_s = 1:5
+            for i_s = 1:100
                 eff_norm(i_s) = eff_norm(i_s) + P*s(i_s);// fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0 ;
                 mom_flech(i_s) = mom_flech(i_s) + 0;
             end
         case "C5" then
-            for i_s = 1:5
+            for i_s = 1:100
                 eff_norm(i_s) = eff_norm(i_s) - (s(i_s) >= a) * P;// fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0;//fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) + 0;//fct de ich et ech
             end
         case "T1" then
-            for i_s = 1:5
+            for i_s = 1:100
                 eff_norm(i_s) = eff_norm(i_s) - 2*s(i_s)/l *Young(n)*S(n) * alpha(n) * P;// fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0;//fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) + 0;//fct de ich et ech
             end
         case "T2" then
-            for i_s = 1:5
+            for i_s = 1:100
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0; //fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) - 2*s*P*Young(n)*J(n)*alpha(n); //fct de ich et ech
             end
         end
     end
-    // Ecrire effort normal, effort tranchant, mom_flech, sur l'élément en sorite dans "resultats.txt"
-    mfprintf(fd2,"element %i \n", n);
-    mfprintf(fd2,"\t\t 0\t\t L/4 \t\t L/2 \t\t 3L/4 \t\t L\n");
-    mfprintf(fd2,"eff_norm\t %+0.4e\t %+0.4e\t %+0.4e\t %+0.4e\t %+0.4e\n",eff_norm(1),eff_norm(2),eff_norm(3),eff_norm(4),eff_norm(5));
-    mfprintf(fd2,"eff_tran\t %+0.4e\t %+0.4e\t %+0.4e\t %+0.4e\t %+0.4e\n",eff_tran(1),eff_tran(2),eff_tran(3),eff_tran(4),eff_tran(5));
-    mfprintf(fd2,"mom_flech\t %+0.4e\t %+0.4e\t %+0.4e\t %+0.4e\t %+0.4e\n",mom_flech(1),mom_flech(2),mom_flech(3),mom_flech(4),mom_flech(5));
-    mfprintf(fd2,"\n")
+    graph = [s;eff_norm'];
+    plot(graph(1,:) + x(i,1),graph(2,:) + x(i,2))
+    
+    // Au moment de l'affichage, il faut définir l'échelle. max() sur toute la
+    // structure par exemple. 
+    
 end
-mclose(fd2);
-
-clear n,clear i,clear j,clear l,clear Cni, clear Cnj,clear qn,clear Dni, clear Dnj, clear dni, clear dnj, clear knii, clear knij, clear  rni,clear ichargement,clear s,clear i_s,clear fd2
