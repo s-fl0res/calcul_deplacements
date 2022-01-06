@@ -10,5 +10,5 @@ for n2 = 1:noeud
     k = k + 1 - liaison(n2) ;
 end
 
-clear noeud, clear k
+clear noeud, clear k,clear n2
 // faire L'*K*L dans la console

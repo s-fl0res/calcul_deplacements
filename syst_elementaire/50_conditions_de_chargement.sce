@@ -2,7 +2,7 @@
 clear tch;clear ich;clear ech;
 
 // pour tch : C1 --> 1, ... C5 --> 5, T1 --> -1, T2 --> -2
-
+l = longueurInitiale;
 a = l/2;
 Q = 1;
 
@@ -17,6 +17,8 @@ n =2;
 tch(n,:)=["C1","C0","C0"];
 ich(n,:) = [Q,0,0];
 ech(n,:) = [0,0,0];
+
+clear l;
 
 
 
