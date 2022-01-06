@@ -73,14 +73,14 @@ for n=1:E
                 case "C1" then 
                     for i_s=1:5
                         u(i_s) = u(i_s);
-                        phi(i_s) = phi(i_s) - q*(s(i_s)^2/2 - a*s(i_s))/(Young(n)*J(n));
-                        v(i_s) = v(i_s) - q*(s(i_s)^3/6 - a*s(i_s)^2/2)/(Young(n)*J(n));
+                        phi(i_s) = phi(i_s) + q*(s(i_s)^3/(6*Young(n)*J(n))) ;
+                        v(i_s) = v(i_s) + q*(s(i_s)^4/(24*Young(n)*J(n)));
                     end
                 case "C2" then 
                     for i_s=1:5
                         u(i_s) = u(i_s);
-                        phi(i_s) = phi(i_s) - q*(s(i_s)^2/2 - a*s(i_s))/(Young(n)*J(n));
-                        v(i_s) = v(i_s) - q*(s(i_s)^3/6 - a*s(i_s)^2/2)/(Young(n)*J(n));
+                        phi(i_s) = phi(i_s) - q*(s(i_s)-a)^2/(2*Young(n)*J(n))*(s(i_s)>=a);
+                        v(i_s) = v(i_s) - q*((s(i_s)-a)^3)/(6*Young(n)*J(n))*(s(i_s)>=a);
                     end
                 case "C3" then
                     for i_s = 1:5
@@ -121,3 +121,4 @@ for n=1:E
     mfprintf(fd,"phi\t %+.3E\t %+.3E\t %+.3E\t %+.3E\t %+.3E\n",phi(1), phi(2), phi(3), phi(4), phi(5));
     mfprintf(fd,"\n")
 end
+mclose(fd);
