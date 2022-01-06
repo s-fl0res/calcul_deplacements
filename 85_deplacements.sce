@@ -90,18 +90,22 @@ for n=1:E
                     end
                 case "C5" then
                     for i_s = 1:5
-                        u(i_s) = u(i_s)-q*(s(i_s)-a)*(s(i_s)>=a);
+                        u(i_s) = u(i_s)-q*(s(i_s)-a)*(s(i_s)>=a)/(Young(n)*S(n));
                         phi(i_s) = phi(i_s);
                         v(i_s) = v(i_s);
                     end
                 case "T1" then
                     for i_s = 1:5
-                        u(i_s) = u(i_s)-q*(s(i_s)-a)*(s(i_s)>=a);
+                        u(i_s) = u(i_s)-s^2/l*alpha(n)*q;
                         phi(i_s) = phi(i_s);
                         v(i_s) = v(i_s);
                     end
                 case "T2" then 
-                 
+                    for i_s = 1:5
+                        u(i_s) = u(i_s);
+                        phi(i_s) = phi(i_s) + alpha(n)*q*s(i_s);
+                        v(i_s) = v(i_s) + alpha(n)*q*s(i_s)^2/2;
+                    end
             end
         end
     mfprintf(fd,"Element %i \n", n);
