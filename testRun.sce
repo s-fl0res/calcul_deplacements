@@ -42,22 +42,22 @@ disp(isequal(Ktilde,Ktilde_ana))
 disp(isequal(L,L_ana))
 exec("syst_elementaire/50_conditions_de_chargement.sce"); // Définition des conditions de chargement
 exec("60_systemes_de_chargement.sce"); // Définition du vecteur R_st_th
-R_ana =[0;
-        1/4;
-        1/48;
-        0;
-        1/2;
+R_ana =[-1/4;
         0;
         0;
-        1/4;
-        -1/48];
+        -1/2;
+        0;
+        0;
+        -1/4;
+        0;
+        0];
 disp(isequal(R_st_th,R_ana))
 exec("70_resolution.sce"); // Résolution de la structure
 D_ana = [0;
          0;
          0;
+         1/8;
          0;
-         -1/192 * 1/2;
          0;
          0;
          0;

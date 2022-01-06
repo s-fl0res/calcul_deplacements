@@ -22,7 +22,7 @@ for n=1:E
                 //rnj = rnj + [0; ich(n,ichargement)/l^3 * (l^3 - 3*l*ech(n,ichargement)^2 + 2*ech(n,ichargement)^3); -ich(n,ichargement)/l^2 * ech(n,ichargement)*(l-ech(n,ichargement))^2];
             case "C3" then
                 rni = rni + [0; 6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
-                rnj = rnj +[0; -6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * (ech(n,ichargement)-l)*(l-3*ech(n,ichargement))];
+                rnj = rnj +[0; -6*ich(n,ichargement) * ech(n,ichargement)*(l- ech(n,ichargement))/l^3; ich(n,ichargement)/l^2 * ech(n,ichargement)^2*(2*l-3*ech(n,ichargement))];
             case "C4" then
                 rni = rni + [-ich(n,ichargement)*l/2; 0; 0];
                 rnj = rnj + [-ich(n,ichargement)*l/2; 0; 0];
