@@ -6,18 +6,26 @@ mfprintf(fd,"Déplacements de la structure \n");
 mfprintf(fd,"\n")
 
 for n=1:E
+    // définition de i et j
+    i = ij(n,1);
+    j = ij(n,2);
+    l = sqrt((x(j,1) - x(i,1))^2 + (x(j,2) - x(i,2))^2);
+    
     //construction des Cni, Cnj
     Cni = zeros(3,3*N);
     Cni(:,3*i-2:3*i)=eye(3,3);
     Cnj = zeros(3,3*N);
     Cnj(:,3*j-2:3*j)=eye(3,3);
+    qn = [(x(j,1) - x(i,1))/l , (x(j,2) - x(i,2))/l, 0;
+            -(x(j,2) - x(i,2))/l, (x(j,1) - x(i,1))/l, 0;
+            0,                   0,                    1];
     
     //construction des Dni, Dnj, dni, dnj
     Dni = Cni*D_sol;
     Dnj = Cnj*D_sol;
     dni = qn*Dni;
     dnj = qn*Dnj;
-    
+ 
     //construction des knii, knij
     knii = Young(n)/(l^3)*[S(n)*l^2, 0, 0
                             0,      12*J(n), 6*J(n)*l
@@ -28,9 +36,7 @@ for n=1:E
                             
     //construction de rni
     rni = knii*dni+knij*dnj;
-    i = ij(n,1);
-    j = ij(n,2);
-    l = sqrt((x(j,1) - x(i,1))^2 + (x(j,2) - x(i,2))^2); 
+
     for i_chargement=1:3
         q = ich(n, i_chargement);
         a = ech(n, i_chargement);
@@ -56,14 +62,14 @@ for n=1:E
         v = zeros(5,1);
         phi = zeros(5,1);
         for i_s=1:5
-            u(i_s) = dni(1) + rni(1)*s(i_s)/(Young(n)*S);
+            u(i_s) = dni(1) + rni(1)*s(i_s)/(Young(n)*S(n));
             phi(i_s) = dni(3) - rni(3)*s(i_s)/(Young(n)*J(n))+ rni(2)*s(i_s)^2/(2*Young(n)*J(n));
             v(i_s) = dni(2) + dni(3)*s(i_s) - rni(3)*s(i_s)^2/(2*Young(n)*J(n))+ rni(2)*s(i_s)^3/(6*Young(n)*J(n));
         end
         for i_chargement=1:3
+            q = ich(n,i_chargement);
+            a = ech(n,i_chargement);
             select tch(n, i_chargement)
-                q = ich(n,i_chargement);
-                a = ech(n,i_chargement);
                 case "C1" then 
                     for i_s=1:5
                         u(i_s) = u(i_s);
@@ -114,4 +120,4 @@ for n=1:E
     mfprintf(fd,"v\t %+.3E\t %+.3E\t %+.3E\t %+.3E\t %+.3E\n",v(1), v(2), v(3), v(4), v(5));
     mfprintf(fd,"phi\t %+.3E\t %+.3E\t %+.3E\t %+.3E\t %+.3E\n",phi(1), phi(2), phi(3), phi(4), phi(5));
     mfprintf(fd,"\n")
-:
+end

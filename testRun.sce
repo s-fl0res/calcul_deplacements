@@ -64,4 +64,4 @@ D_ana = [0;
          0];
 disp(isequal(D_sol,D_ana))
 exec("80_efforts_interieurs.sce");//Calcul des efforts intérieurs à partir des déplacements solution
-//exec("85_deplacements.sce");
+exec("85_deplacements.sce");
