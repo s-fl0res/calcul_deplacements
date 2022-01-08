@@ -3,8 +3,8 @@ clear tch;clear ich;clear ech;
 
 // pour tch : C1 --> 1, ... C5 --> 5, T1 --> -1, T2 --> -2
 
-a = l/2;
-Q = -1;
+a = 1/2;
+Q = 1;
 
 //poteau 1, chargmeent longitudinal
 n=1;

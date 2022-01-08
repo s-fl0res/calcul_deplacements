@@ -12,8 +12,9 @@
 
 format("e",10)
 clear all
-exec("10_noeuds.sce");           // Chargement noeuds
-exec("20_elements.sce");         // Chargement elements
+xdel(winsid())
+exec("test_D_sol/10_noeuds.sce");           // Chargement noeuds
+exec("test_D_sol/20_elements.sce");         // Chargement elements
 exec("30_matrice_de_raideur.sce");     // Calcul matrice de raideur
 K_ana =     [2,0,0,-2,0,0,0,0,0;
              0,96,24,0,-96,24,0,0,0;
@@ -41,7 +42,7 @@ Ktilde_ana =    [4,0,0;
 Ktilde = L'*K*L;
 disp(isequal(Ktilde,Ktilde_ana))
 disp(isequal(L,L_ana))
-exec("50_conditions_de_chargement.sce"); // Définition des conditions de chargement
+exec("test_D_sol/50_conditions_de_chargement.sce"); // Définition des conditions de chargement
 exec("60_systemes_de_chargement.sce"); // Définition du vecteur R_st_th
 R_ana =[-1/4;
         0;
@@ -66,4 +67,5 @@ D_ana = [0;
 disp(isequal(D_sol,D_ana))
 exec("80_efforts_interieurs.sce");//Calcul des efforts intérieurs à partir des déplacements solution
 exec("85_deplacements.sce");
-exec("90_diagrammes.sce");
+//exec("90_diagrammes.sce");
+exec("95_deformee.sce")
