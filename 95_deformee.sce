@@ -1,14 +1,14 @@
 
 clear u, clear v, clear phi
 
-format("e",10)
+format("v",10)
 
-n = size(liaison,1);
+liaisons = size(liaison,1);
 m = size(ij,1);
 ma = 0;
 somme = 0;
 
-plot2d(0,0)
+fig_deformee = scf(4);
 
 //Affichage des membrures
 for inc = 1:m
@@ -22,16 +22,16 @@ for inc = 1:m
     
     ma=max(x(i,1), x(j,1),x(i,2), x(j,2),ma);
     
-    plot(coor_x, coor_y,'k--');
-    xstring((x(i,1)+ x(j,1))/2,(x(i,2)+ x(j,2))/2,string(inc),0,1)
+    plot(coor_x, coor_y,'k');
+    xstring((x(i,1)+ x(j,1))/2,(x(i,2)+ x(j,2))/2,string(inc),0,1);
 end
 
 
-dim_app = somme /(m * 20)
-plot2d(ma+dim_app,ma+dim_app)
+dim_app = somme /(m * 20);
+plot2d(ma+dim_app,ma+dim_app);
 
 //Affichage des appuis fixes
-for inc = 1 : n
+for inc = 1 : liaisons
     if liaison(inc) == 1 then
         xfrect(x(inc,1)-dim_app, x(inc,2)+dim_app, 2*dim_app, 2*dim_app);
         gce().background = color("red");
@@ -154,12 +154,12 @@ for n=1:E
                 end
         end
     end
-    graph = qn(1:2,1:2)' * [u' + s ;v'] + [x(i,1)*ones(1,100);x(i,2)*ones(1,100)];
+    graph = qn(1:2,1:2)' * [u'*fact_deplacements + s ;v'*fact_deplacements] + [x(i,1)*ones(1,100);x(i,2)*ones(1,100)];
     plot(graph(1,:), graph(2,:),'b');
 end
 
 //Affichage des appuis fixes
-for inc = 1 : n
+for inc = 1 : liaisons
     if liaison(inc) == 1 then
         xfrect(x(inc,1)-dim_app, x(inc,2)+dim_app, 2*dim_app, 2*dim_app);
         gce().background = color("red");
