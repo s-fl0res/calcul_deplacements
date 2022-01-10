@@ -170,6 +170,7 @@ for n=1:E
     qn = [(x(j,1) - x(i,1))/l , (x(j,2) - x(i,2))/l, 0;
       -(x(j,2) - x(i,2))/l, (x(j,1) - x(i,1))/l, 0;
       0,                   0,                    1];
+    s = linspace(0,l,100);
     scf(fig_eff_norm);
     graph = qn(1:2,1:2)'*[s;eff_norm(:,n)'/eff_norm_max*fact_diagrammes];
     plot(graph(1,:) + x(i,1),graph(2,:) + x(i,2));    
