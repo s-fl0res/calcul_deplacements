@@ -141,9 +141,9 @@ for n=1:E
                 eff_tran(i_s,n) = eff_tran(i_s,n) + 0;//fct de ich et ech
                 mom_flech(i_s,n) = mom_flech(i_s,n) + 0;//fct de ich et ech
             end
-        case "T1" then
+        case "T1" then 
             for i_s = 1:100
-                eff_norm(i_s,n) = eff_norm(i_s,n) - 2*s(i_s)/l *Young(n)*S(n) * alpha(n) * P;// fct de ich et ech
+                eff_norm(i_s,n) = eff_norm(i_s,n) + 0;// fct de ich et ech
                 eff_tran(i_s,n) = eff_tran(i_s,n) + 0;//fct de ich et ech
                 mom_flech(i_s,n) = mom_flech(i_s,n) + 0;//fct de ich et ech
             end
@@ -161,6 +161,9 @@ eff_norm_max = max(abs(eff_norm));
 eff_tran_max = max(abs(eff_tran));
 mom_flech_max = max(abs(mom_flech));
 
+eff_norm_max = eff_norm_max + 1 * (eff_norm_max == 0)
+eff_tran_max = eff_tran_max + 1 * (eff_tran_max == 0)
+mom_flech_max = mom_flech_max + 1 * (mom_flech_max == 0)
 // Affichage des efforts
 for n=1:E
     i = ij(n,1);
@@ -173,11 +176,26 @@ for n=1:E
     s = linspace(0,l,100);
     scf(fig_eff_norm);
     graph = qn(1:2,1:2)'*[s;eff_norm(:,n)'/eff_norm_max*fact_diagrammes];
-    plot(graph(1,:) + x(i,1),graph(2,:) + x(i,2));    
+    plot(graph(1,:) + x(i,1),graph(2,:) + x(i,2));
+    g = gca();
+    g.isoview = "on";
+    g.tight_limits = "off";
+    g.margins = [0.125 0.125 0.125 0.125];
+    g.data_bounds = [min(g.data_bounds(1,:)),min(g.data_bounds(1,:));max(g.data_bounds(2,:)),max(g.data_bounds(2,:))];    
     scf(fig_eff_tran);
     graph = qn(1:2,1:2)'*[s;eff_tran(:,n)'/eff_tran_max*fact_diagrammes];
-    plot(graph(1,:) + x(i,1),graph(2,:) + x(i,2));    
+    plot(graph(1,:) + x(i,1),graph(2,:) + x(i,2));
+    g = gca();
+    g.isoview = "on";
+    g.tight_limits = "off";
+    g.margins = [0.125 0.125 0.125 0.125];
+    g.data_bounds = [min(g.data_bounds(1,:)),min(g.data_bounds(1,:));max(g.data_bounds(2,:)),max(g.data_bounds(2,:))];
     scf(fig_mom_flech);
     graph = qn(1:2,1:2)'*[s;mom_flech(:,n)'/mom_flech_max*fact_diagrammes];
     plot(graph(1,:) + x(i,1),graph(2,:) + x(i,2));
+    g = gca();
+    g.isoview = "on";
+    g.tight_limits = "off";
+    g.margins = [0.125 0.125 0.125 0.125];
+    g.data_bounds = [min(g.data_bounds(1,:)),min(g.data_bounds(1,:));max(g.data_bounds(2,:)),max(g.data_bounds(2,:))];
 end

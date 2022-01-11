@@ -9,8 +9,8 @@ Q = 1;
 //poteau 1, chargmeent longitudinal
 n=1;
 tch(n,:)=["C0","C0","C0"];//Type de chargement
-ich(n,:) = [0,0,0];// Intensité du chargement (dépend du type)
-ech(n,:) = [0,0,0]; // Excentricité du chargement (ce n'a de sens que pour les charges poncuelles) : distance par rapport à l'origin du repère
+ich(n,:) = [-Q,0,0];// Intensité du chargement (dépend du type)
+ech(n,:) = [a,0,0]; // Excentricité du chargement (ce n'a de sens que pour les charges poncuelles) : distance par rapport à l'origin du repère
 
 //poteau 2,chargement longitudinal
 n =2;
