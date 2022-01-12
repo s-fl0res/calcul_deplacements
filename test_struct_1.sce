@@ -10,6 +10,13 @@
 // Comme ça, une fois testé, tout autre fichier essentiel à la resolution
 // peut rester tranquillement inchangé dans le dossier principal.
 
+// Préparer diapo avec 
+// 1. Conditions de chargement statique sur la structure qu'il nous donnera
+// 2. Conditions de chargement thermique sur la structure qu'il nous donnera
+// 3. C1-C5, T1-T2 résultats format texte et graphique système élémentaire
+// 4. Répartition des tâches avec estimation d'heures de travail par personne
+
+
 format("e",10)
 clear all
 xdel(winsid())
@@ -22,7 +29,7 @@ exec("60_systemes_de_chargement.sce"); // Définition du vecteur R_st_th
 exec("70_resolution.sce"); // Résolution de la structure
 exec("80_efforts_interieurs.sce");//Calcul des efforts intérieurs à partir des déplacements solution
 exec("85_deplacements.sce");
-fact_deplacements = 1;
+fact_deplacements =1;
 fact_diagrammes = 0.5;
 exec("90_diagrammes.sce");
-exec("95_deformee.sce")
+exec("95_deformee.sce");

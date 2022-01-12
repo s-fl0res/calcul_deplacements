@@ -151,7 +151,7 @@ for n=1:E
             for i_s = 1:100
                 eff_norm(i_s,n) = eff_norm(i_s,n) + 0; // fct de ich et ech
                 eff_tran(i_s,n) = eff_tran(i_s,n) + 0; //fct de ich et ech
-                mom_flech(i_s,n) = mom_flech(i_s,n) - 2*s*P*Young(n)*J(n)*alpha(n); //fct de ich et ech
+                mom_flech(i_s,n) = mom_flech(i_s,n) +0; //fct de ich et ech
             end
         end
     end

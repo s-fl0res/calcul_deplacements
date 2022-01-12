@@ -23,6 +23,6 @@ exec("70_resolution.sce"); // Résolution de la structure
 exec("80_efforts_interieurs.sce");//Calcul des efforts intérieurs à partir des déplacements solution
 exec("85_deplacements.sce");
 fact_deplacements = 10^7;
-fact_diagrammes = 0.5;
+fact_diagrammes = 1;
 exec("90_diagrammes.sce");
 exec("95_deformee.sce");
