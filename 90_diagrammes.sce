@@ -147,7 +147,7 @@ for n=1:E
             end
         case "T1" then 
             for i_s = 1:100
-                eff_norm(i_s,n) = eff_norm(i_s,n) + 0;// fct de ich et ech
+                eff_norm(i_s,n) = eff_norm(i_s,n) - 2*s(i_s)/l*alpha(n)*q;// fct de ich et ech
                 eff_tran(i_s,n) = eff_tran(i_s,n) + 0;//fct de ich et ech
                 mom_flech(i_s,n) = mom_flech(i_s,n) + 0;//fct de ich et ech
             end
@@ -155,7 +155,7 @@ for n=1:E
             for i_s = 1:100
                 eff_norm(i_s,n) = eff_norm(i_s,n) + 0; // fct de ich et ech
                 eff_tran(i_s,n) = eff_tran(i_s,n) + 0; //fct de ich et ech
-                mom_flech(i_s,n) = mom_flech(i_s,n) +0; //fct de ich et ech
+                mom_flech(i_s,n) = mom_flech(i_s,n) - alpha(n)*q; //fct de ich et ech
             end
         end
     end
@@ -224,5 +224,5 @@ scf(fig_mom_flech);
 plot2d([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2,ma_y/2]);
 xstring(ma_x+11*dim_app,ma_y/2-dim_app,"UL : "+string(dim_app*5)+" mètres",0,1);
 plot2d([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2-4*dim_app,ma_y/2-4*dim_app]);
-xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_diagrammes*mom_flech_max)+" mètres",0,1);
+xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_diagrammes*mom_flech_max)+" N",0,1);
 plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app]);

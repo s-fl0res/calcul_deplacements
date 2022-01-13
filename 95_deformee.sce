@@ -145,15 +145,15 @@ for n=1:E
                 end
             case "T1" then
                 for i_s = 1:100
-                    u(i_s) = u(i_s);//+s(i_s)^2/l*alpha(n)*q;
+                    u(i_s) = u(i_s)+s(i_s)^2/l*alpha(n)*q;
                     phi(i_s) = phi(i_s);
                     v(i_s) = v(i_s);
                 end
             case "T2" then 
                 for i_s = 1:100
                     u(i_s) = u(i_s);
-                    phi(i_s) = phi(i_s);// + alpha(n)*q*s(i_s);
-                    v(i_s) = v(i_s);// + alpha(n)*q*s(i_s)^2/2;
+                    phi(i_s) = phi(i_s)- alpha(n)*q*s(i_s);
+                    v(i_s) = v(i_s) - alpha(n)*q*s(i_s)^2/2;
                 end
         end
     end
@@ -169,11 +169,17 @@ for inc = 1 : liaisons
     end
         xstring(x(inc,1)-2*dim_app,x(inc,2)+dim_app,string(inc));
 end
-format("e",11)
+format("e",12)
+g = gca();
+title("Déformée de la structure");
+g.isoview = "on";
+g.tight_limits = "off";
+g.margins = [0.125 0.125 0.125 0.125];
+g.data_bounds = [min(g.data_bounds(1,:)),min(g.data_bounds(1,:));max(g.data_bounds(2,:)),max(g.data_bounds(2,:))];
 plot2d([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2,ma_y/2])
-xstring(ma_x+11*dim_app,ma_y/2-dim_app,"UL : "+string(dim_app*5)+" mètres",0,1)
+xstring(ma_x+11*dim_app,ma_y/2-dim_app,"UL : "+string(dim_app*5)+" m",0,1)
 plot([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2-4*dim_app,ma_y/2-4*dim_app],"b")
-xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_deplacements)+" mètres",0,1)
+xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_deplacements)+" m",0,1)
 plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app])
 g = gca();
 g.axes_visible="on";

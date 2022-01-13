@@ -97,7 +97,7 @@ for n=1:E
             end
         case "T1" then
             for i_s = 1:5
-                eff_norm(i_s) = eff_norm(i_s) + 0;// fct de ich et ech
+                eff_norm(i_s) = eff_norm(i_s) - 2*s(i_s)/l*alpha(n)*q;// fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0;//fct de ich et ech
                 mom_flech(i_s) = mom_flech(i_s) + 0;//fct de ich et ech
             end
@@ -105,7 +105,7 @@ for n=1:E
             for i_s = 1:5
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0; //fct de ich et ech
-                mom_flech(i_s) = mom_flech(i_s) + 0 ; //fct de ich et ech
+                mom_flech(i_s) = mom_flech(i_s) - alpha(n)*q; //fct de ich et ech
             end
         end
     end
