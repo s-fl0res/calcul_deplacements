@@ -3,7 +3,8 @@ clear eff_norm, clear eff_tran, clear mom_flech
 format("v",10)
 n = size(liaison,1);
 m = size(ij,1);
-ma = 0;
+ma_x = 0;
+ma_y = 0;
 somme = 0;
 
 fig_eff_norm = scf(1);
@@ -24,7 +25,8 @@ for inc = 1:m
     coor_x = [x(i,1), x(j,1)];
     coor_y = [x(i,2), x(j,2)];
     
-    ma=max(x(i,1), x(j,1),x(i,2), x(j,2),ma);
+    ma_x = max(x(i,1), x(j,1),ma_x);
+    ma_y = max(x(i,2), x(j,2),ma_y);
     for fig=[fig_eff_norm,fig_eff_tran,fig_mom_flech]
         scf(fig);
         plot(coor_x, coor_y,'k--');
@@ -32,7 +34,9 @@ for inc = 1:m
     end
 end
 
+ma = max(ma_x,ma_y);
 dim_app = somme /(m * 20);
+plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app])
 //plot2d(ma+dim_app,ma+dim_app)
 
 //Affichage des appuis fixes, A CORRIGER
@@ -127,7 +131,7 @@ for n=1:E
             for i_s = 1:100
                 eff_norm(i_s,n) = eff_norm(i_s,n) + 0; // fct de ich et ech
                 eff_tran(i_s,n) = eff_tran(i_s,n) + 0; //fct de ich et ech
-                mom_flech(i_s,n) = mom_flech(i_s,n) + (s(i_s) >= a) * P;//fct de ich et ech
+                mom_flech(i_s,n) = mom_flech(i_s,n) + (s(i_s) > a) * P;//fct de ich et ech
             end
         case "C4" then
             for i_s = 1:100
@@ -199,3 +203,26 @@ for n=1:E
     g.margins = [0.125 0.125 0.125 0.125];
     g.data_bounds = [min(g.data_bounds(1,:)),min(g.data_bounds(1,:));max(g.data_bounds(2,:)),max(g.data_bounds(2,:))];
 end
+
+//Légende 
+format("e",11)
+scf(fig_eff_norm);
+plot([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2,ma_y/2],"k");
+xstring(ma_x+11*dim_app,ma_y/2-dim_app,"UL : "+string(dim_app*5)+" mètres",0,1);
+plot([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2-4*dim_app,ma_y/2-4*dim_app],"b");
+xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_diagrammes*eff_norm_max)+" N",0,1);
+plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app]);
+      
+scf(fig_eff_tran);
+plot2d([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2,ma_y/2])
+xstring(ma_x+11*dim_app,ma_y/2-dim_app,"UL : "+string(dim_app*5)+" mètres",0,1)
+plot([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2-4*dim_app,ma_y/2-4*dim_app],"b")
+xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_diagrammes*eff_tran_max)+" N",0,1)
+plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app])
+    
+scf(fig_mom_flech);    
+plot2d([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2,ma_y/2]);
+xstring(ma_x+11*dim_app,ma_y/2-dim_app,"UL : "+string(dim_app*5)+" mètres",0,1);
+plot2d([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2-4*dim_app,ma_y/2-4*dim_app]);
+xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_diagrammes*mom_flech_max)+" mètres",0,1);
+plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app]);

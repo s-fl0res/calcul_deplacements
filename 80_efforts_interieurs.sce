@@ -81,7 +81,7 @@ for n=1:E
             for i_s = 1:5
                 eff_norm(i_s) = eff_norm(i_s) + 0; // fct de ich et ech
                 eff_tran(i_s) = eff_tran(i_s) + 0; //fct de ich et ech
-                mom_flech(i_s) = mom_flech(i_s) + (s(i_s) >= a) * P;//fct de ich et ech
+                mom_flech(i_s) = mom_flech(i_s) + (s(i_s) > a) * P;//fct de ich et ech
             end
         case "C4" then
             for i_s = 1:5

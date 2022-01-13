@@ -5,7 +5,8 @@ format("v",10)
 
 liaisons = size(liaison,1);
 m = size(ij,1);
-ma = 0;
+ma_x = 0;
+ma_y = 0;
 somme = 0;
 
 fig_deformee = scf(4);
@@ -20,15 +21,17 @@ for inc = 1:m
     coor_x = [x(i,1), x(j,1)]
     coor_y = [x(i,2), x(j,2)];
     
-    ma=max(x(i,1), x(j,1),x(i,2), x(j,2),ma);
+    ma_x = max(x(i,1), x(j,1),ma_x);
+    ma_y = max(x(i,2), x(j,2),ma_y);
     
     plot(coor_x, coor_y,'k');
     xstring((x(i,1)+ x(j,1))/2,(x(i,2)+ x(j,2))/2,string(inc),0,1);
 end
 
-
+ma = max(ma_x,ma_y);
 dim_app = somme /(m * 20);
-plot2d(ma+dim_app,ma+dim_app);
+plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app])
+
 
 //Affichage des appuis fixes
 for inc = 1 : liaisons
@@ -125,7 +128,7 @@ for n=1:E
             case "C3" then // fait
                 for i_s = 1:100
                     u(i_s) = u(i_s);
-                    phi(i_s) = phi(i_s) - q * (s(i_s)-a)/(Young(n)*J(n)) * (s(i_s)>=a);
+                    phi(i_s) = phi(i_s) + q * (s(i_s)-a)/(Young(n)*J(n)) * (s(i_s)>=a);
                     v(i_s) = v(i_s) - q*(s(i_s)-a)^2/(2*Young(n)*J(n)) * (s(i_s)>=a);
                 end
             case "C4" then // fait
@@ -166,6 +169,11 @@ for inc = 1 : liaisons
     end
         xstring(x(inc,1)-2*dim_app,x(inc,2)+dim_app,string(inc));
 end
-
+format("e",11)
+plot2d([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2,ma_y/2])
+xstring(ma_x+11*dim_app,ma_y/2-dim_app,"UL : "+string(dim_app*5)+" mètres",0,1)
+plot([ma_x+5*dim_app,ma_x+10*dim_app], [ma_y/2-4*dim_app,ma_y/2-4*dim_app],"b")
+xstring(ma_x+11*dim_app,ma_y/2-5*dim_app,"UD : "+string(dim_app*5/fact_deplacements)+" mètres",0,1)
+plot2d(ma+dim_app,ma+dim_app,rect=[0,0,ma+30*dim_app,ma+30*dim_app])
 g = gca();
-g.axes_visible="off";
+g.axes_visible="on";
